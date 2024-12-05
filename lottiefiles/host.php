@@ -6,7 +6,7 @@
  * Description: LottieFiles for WordPress is the easiest way to add Lottie animations to your WordPress website using the Gutenberg editor.
  * Author: LottieFiles
  * Author URI: https://lottiefiles.com/
- * Version: 2.9.0
+ * Version: 3.0.0
  * License: GPLv3
  *
  * @package LottieFiles

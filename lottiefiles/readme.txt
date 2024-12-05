@@ -4,9 +4,9 @@ Plugin URI: https:/lottiefiles.com/plugins/wordpress
 Contributors: lottiefile
 Tags: lottie, bodymovin, gutenberg, animation, animations
 Requires at least: 5.9
-Tested up to: 6.6
+Tested up to: 6.7.1
 Requires PHP: 5.6
-Stable Tag: 2.9.0
+Stable Tag: 3.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,6 +78,12 @@ If you have spotted any bugs, or would like to request additional features from 
 3. LottieFiles plugin
 
 == Changelog ==
+
+## 3.0.0
+
+### Minor Changes
+
+- Fixes breaking changes in Gutenberg
 
 ## 2.9.0
 

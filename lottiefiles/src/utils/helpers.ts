@@ -12,7 +12,7 @@ export const capitalizeFirstLetter = (string: string): string => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
-export const extractDotLottie = async (dotLottieUrl: string): Promise<Record<string, unknown> | null> => {
+export async function extractDotLottie(dotLottieUrl: string): Promise<Record<string, unknown> | null> {
   // extract dotlottie contents and save to state
   const dotlottie = await DotLottieUtils.build(dotLottieUrl);
 
@@ -28,7 +28,7 @@ export const extractDotLottie = async (dotLottieUrl: string): Promise<Record<str
   }
 
   return null;
-};
+}
 
 export const isDotLottie = (url: string) => {
   if (url.endsWith('.lottie')) return true;

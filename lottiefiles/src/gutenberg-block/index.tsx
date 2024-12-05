@@ -37,7 +37,7 @@ import { Save } from './frontend/save';
  */
 
 const init = async (): Promise<void> => {
-  const TRACKER_API_KEY = process.env.TRACKER_API_KEY as string;
+  const TRACKER_API_KEY = process.env.NODE_ENV === 'development' ? process.env.TRACKER_API_KEY_DEV : process.env.TRACKER_API_KEY;
   const TIME = getEpoch();
   const PLATFORM = appDetails.name;
   const APP_VERSION = appDetails.version;
@@ -61,7 +61,7 @@ const init = async (): Promise<void> => {
   Bugsnag.start({
     apiKey: process.env.BUGSNAG_API_KEY || '',
     appVersion: packageJson.version,
-    releaseStage: process.env.NODE_ENV,
+    releaseStage: process.env.NODE_ENV === 'development' ? 'development' : 'production',
     plugins: [new BugsnagPluginReact()],
   });
 

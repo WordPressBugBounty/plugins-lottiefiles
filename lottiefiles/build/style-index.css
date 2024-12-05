@@ -102,8 +102,10 @@
 
 .carousel-next.custom:before,
 .carousel-prev.custom:before {
-  content: unset;
-  background-image: unset;
+  content: normal;
+  content: initial;
+  background-image: none;
+  background-image: initial;
 }
 
 .carousel-prev {

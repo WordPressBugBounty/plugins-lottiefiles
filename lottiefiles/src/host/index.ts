@@ -2,13 +2,9 @@
  * Copyright 2020 Design Barn Inc.
  */
 
-// import { TrackerDefault } from '../helpers/interfaces';
-
 import { Client } from './client';
 
-export { Client };
-
-export const createTrackerBridge = async (
+function createTrackerBridge(
   apiKey: string,
   time: string,
   platform: string,
@@ -17,4 +13,13 @@ export const createTrackerBridge = async (
   sourceId: number,
   token: string,
   notTracking: boolean,
-): Promise<unknown> => Client.getInstance(apiKey, time, platform, appVersion, deviceId, sourceId, token, notTracking);
+) {
+  try {
+    return Client.getInstance(apiKey, time, platform, appVersion, deviceId, sourceId, token, notTracking);
+  } catch (error) {
+    console.error('Error creating tracker bridge:', error);
+    throw error;
+  }
+}
+
+export { Client, createTrackerBridge };

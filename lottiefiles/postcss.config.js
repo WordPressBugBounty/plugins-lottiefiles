@@ -2,8 +2,15 @@
  * Copyright 2022 Design Barn Inc.
  */
 
-const tailwindcss = require('tailwindcss');
-
 module.exports = {
-  plugins: [tailwindcss('./tailwind.config.js'), require('autoprefixer')],
+  plugins: [
+    require('tailwindcss'),
+    require('autoprefixer'),
+    require('postcss-preset-env')({
+      stage: 3,
+      features: {
+        'nesting-rules': true,
+      },
+    }),
+  ],
 };

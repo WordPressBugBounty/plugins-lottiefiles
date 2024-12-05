@@ -10,33 +10,45 @@ import { IHNResponseProps } from '../admin/settings/reducer';
 const path: string = '/lottiefiles/v1/settings/';
 
 // Fetch settings via the REST API endpoint
-export const getSettings = async (): Promise<IHNResponseProps | boolean | IErrorProps> => {
-  const data = await apiFetch({
-    path,
-    method: 'GET',
-  }).catch(err => ({ ...err, error: true }));
-
-  return data;
-};
+export function getSettings() {
+  return new Promise((resolve, reject) => {
+    apiFetch({
+      path,
+      method: 'GET',
+    }).then(data => {
+      resolve(data);
+    }).catch(err => {
+      reject({ ...err, error: true });
+    });
+  });
+}
 
 // Update settings via the REST API endpoint
-export const updateSettings = async (data: unknown): Promise<IHNResponseProps> => {
-  const updatedData = apiFetch({
-    path,
-    data,
-    method: 'POST',
-  }).catch(err => ({ ...err, error: true }));
-
-  return updatedData;
-};
+export function updateSettings(data: unknown) {
+  return new Promise((resolve, reject) => {
+    apiFetch({
+      path,
+      data,
+      method: 'POST',
+    }).then(updatedData => {
+      resolve(updatedData);
+    }).catch(err => {
+      reject({ ...err, error: true });
+    });
+  });
+}
 
 // Delete settings via the REST API endpoint
-export const deleteSettings = async (data: unknown): Promise<boolean> => {
-  const deleteData = apiFetch({
-    path,
-    data,
-    method: 'DELETE',
-  }).catch(err => ({ ...err, error: true }));
-
-  return deleteData;
-};
+export function deleteSettings(data: unknown) {
+  return new Promise((resolve, reject) => {
+    apiFetch({
+      path,
+      data,
+      method: 'DELETE',
+    }).then(() => {
+      resolve(true);
+    }).catch(err => {
+      reject({ ...err, error: true });
+    });
+  });
+}

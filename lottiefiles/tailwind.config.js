@@ -54,10 +54,9 @@ const colors = {
 };
 
 module.exports = {
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   important: true,
-  purge: [],
   prefix: 'lf-',
-  // or 'media' or 'class'
   darkMode: false,
   theme: {
     colors,
@@ -78,27 +77,21 @@ module.exports = {
   plugins: [
     plugin(function ({ addComponents, theme }) {
       addComponents({
-        // Tab
         '._lf-tab': {
           '@apply lf-w-full lf-p-2 lf-mb-2 lf-text-gray-600 lf-rounded-md lf-cursor-pointer': {},
-
           '&:hover': {
             '@apply lf-bg-gray-50 lf-text-teal-300': {},
           },
-
           '&.active': {
             '@apply lf-bg-gray-50 lf-text-teal-300': {},
           },
         },
-        // DragDrop
         '._lf-drag-box': {
           '@apply lf-flex lf-justify-center lf-items-center lf-h-full lf-p-8 lf-rounded-md': {},
-
           '&.bordered': {
             '@apply lf-border-2 lf-border-gray-200 lf-border-dashed': {},
           },
         },
-        // Button
         '._lf-btn': {
           fontFamily: theme('fontFamily.lf-bold'),
           borderRadius: theme('borderRadius.lg'),
@@ -120,7 +113,6 @@ module.exports = {
           '&:hover': {
             backgroundColor: theme('colors.teal.600'),
           },
-          // color variations
           '&.primary': {
             backgroundColor: theme('colors.teal.300'),
             color: theme('colors.white'),
@@ -181,7 +173,6 @@ module.exports = {
               color: theme('colors.teal.600'),
             },
           },
-          // size variations
           '&.tiny': {
             paddingLeft: theme('padding.4'),
             paddingRight: theme('padding.4'),
@@ -212,7 +203,6 @@ module.exports = {
             borderRadius: theme('borderRadius.md'),
           },
         },
-        // Link
         '._lf-link': {
           color: theme('colors.teal.600'),
           '&:focus': {
@@ -225,7 +215,6 @@ module.exports = {
             '@apply lf-bg-gray-100 lf-text-teal-600': {},
           },
         },
-        // Card
         '._lf-card': {
           width: theme('width.32'),
           height: theme('height.32'),
@@ -237,7 +226,6 @@ module.exports = {
           position: 'relative',
           display: 'flex',
           justifyContent: 'center',
-          // size variations
           '&.tiny': {
             width: theme('width.24'),
             height: theme('height.24'),
