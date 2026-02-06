@@ -45,12 +45,6 @@ export const Settings: React.FC<ISettingsProps> = ({ onDeleteSettings, settings,
         </a>
       </p>
       <CheckboxControl
-        label="Share LottieFiles account with other Wordpress users"
-        name="share_with_others"
-        checked={state.settings.shareWithOthers}
-        onChange={(): void => onChange({ shareWithOthers: !state.settings.shareWithOthers })}
-      />
-      <CheckboxControl
         label="Copy animations to Wordpress Media Library"
         help=""
         name="copy_to_media"

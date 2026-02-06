@@ -55,15 +55,6 @@ export const Setup: React.FC<ISetupProps> = ({ onSaveSettings, settings }: ISetu
           your website.
         </p>
         <CheckboxControl
-          label="Share LottieFiles account with other Wordpress users"
-          name="share_with_others"
-          checked={state.settings.shareWithOthers}
-          onChange={(): void => onChange({ shareWithOthers: !state.settings.shareWithOthers })}
-        />
-        <p className="privacy-policy lf-text-gray-400 lf--mt-1 lf-mb-5">
-          Allow other WordPress users to explore LottieFiles using your account.
-        </p>
-        <CheckboxControl
           label="Use our Content Delivery Network (CDN) for JavaScript libraries like the Lottie Web Player"
           name="use_our_cdn"
           checked={state.settings.enableCdn}

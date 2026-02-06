@@ -18,7 +18,7 @@ interface ISidebarProps {
 
 export const Sidebar: React.FC = ({ children }: ISidebarProps) => {
   const tracker = useTracker();
-  const { appData, onLogout, onSwitch } = useContext(LottieContext);
+  const { appData, onLogout } = useContext(LottieContext);
 
   return (
     <div className="lf-flex lf-w-72 lf-p-2 lf-border-r lf-border-gray-200">
@@ -57,15 +57,11 @@ export const Sidebar: React.FC = ({ children }: ISidebarProps) => {
                 <button
                   className="lf-text-sm"
                   onClick={(): void => {
-                    if (!appData.switchAccount && !appData.isAdmin) {
-                      onSwitch();
-                    } else {
-                      tracker.pluginTracking({
-                        eventType: eventsConst.click.logout,
-                        userId: appData?.userData?.id,
-                      });
-                      onLogout();
-                    }
+                    tracker.pluginTracking({
+                      eventType: eventsConst.click.logout,
+                      userId: appData?.userData?.id,
+                    });
+                    onLogout();
                   }}
                 >
                   Logout

@@ -26,7 +26,6 @@ export const OnBoarding: React.FC = () => {
   const onSuccess = async (data: IUserDataProps): Promise<void> => {
     await onLogin({
       shareUserData: false,
-      shareWithOthers: false,
       enableCdn: false,
       copyLottieToMedia: false,
       switchAccount: false,

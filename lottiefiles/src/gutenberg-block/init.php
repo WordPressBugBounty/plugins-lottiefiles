@@ -43,7 +43,8 @@ function lottiefiles_register_block()
   );
 
 
-  if (strstr($_SERVER['REQUEST_URI'], 'wp-admin/post-new.php') || strstr($_SERVER['REQUEST_URI'], 'wp-admin/post.php') || strstr($_SERVER['REQUEST_URI'], 'lottiefiles-admin-settings') || strstr($_SERVER['REQUEST_URI'], 'site-editor.php')) {
+  $request_uri = isset($_SERVER['REQUEST_URI']) ? sanitize_text_field(wp_unslash($_SERVER['REQUEST_URI'])) : '';
+  if (strstr($request_uri, 'wp-admin/post-new.php') || strstr($request_uri, 'wp-admin/post.php') || strstr($request_uri, 'lottiefiles-admin-settings') || strstr($request_uri, 'site-editor.php')) {
     wp_enqueue_style(
       'lottiefiles-style-css',
       plugins_url("../build/index.css", dirname(__FILE__)),
@@ -64,29 +65,18 @@ function lottiefiles_register_block()
   );
 
 
-  $userSettings = json_decode(get_option('lottie_config_admin'));
-
-  if (!empty($userSettings)) {
-    if ($userSettings->enableCdn) {
-      wp_register_script('lottieFilesCDN', 'https://unpkg.com/@lottiefiles/lottie-player@1.5.5/dist/lottie-player.js', null, null, true);
-      wp_enqueue_script('lottieFilesCDN');
-    } else {
-      wp_register_script('lottieFilesLocalPlayer', plugins_url("../build/lottiefiles-player.js", dirname(__FILE__)), null, null, true);
-      wp_enqueue_script('lottieFilesLocalPlayer');
-    }
-  } else {
-    wp_register_script('lottieFilesLocalPlayer', plugins_url("../build/lottiefiles-player.js", dirname(__FILE__)), null, null, true);
-    wp_enqueue_script('lottieFilesLocalPlayer');
-  }
+  // Always use local player - CDN loading is not allowed by WordPress.org
+  wp_register_script('lottieFilesLocalPlayer', plugins_url("../build/lottiefiles-player.js", dirname(__FILE__)), array(), $asset_file['version'], true);
+  wp_enqueue_script('lottieFilesLocalPlayer');
 
   // Not longer need it since for interactivity features we are using lottie player
   // wp_register_script('lottieFilesDLCDN', 'https://unpkg.com/@dotlottie/player-component@1.0.0/dist/dotlottie-player.js', null, null, true);
   // wp_enqueue_script('lottieFilesDLCDN');
 
-  wp_register_script('lottieFilesInteractivityCDN',  plugins_url("../build/lottiefiles-interactivity.js", dirname(__FILE__)), null, null, true);
-  wp_enqueue_script('lottieFilesInteractivityCDN');
+  wp_register_script('lottieFilesInteractivity', plugins_url("../build/lottiefiles-interactivity.js", dirname(__FILE__)), array(), $asset_file['version'], true);
+  wp_enqueue_script('lottieFilesInteractivity');
 
-  function cc_mime_types($mimes)
+  function lottiefiles_custom_mime_types($mimes)
   {
     $mimes['json'] = 'application/json';
     $mimes['json'] = 'text/plain';
@@ -94,7 +84,7 @@ function lottiefiles_register_block()
     return $mimes;
   }
 
-  add_filter('upload_mimes', 'cc_mime_types');
+  add_filter('upload_mimes', 'lottiefiles_custom_mime_types');
 
   /**
    * Register Gutenberg block on server-side.
@@ -133,7 +123,8 @@ function lottiefiles_register_front()
     'lottiefiles-block-frontend',
     plugins_url('../build/frontend-helper.js',  dirname(__FILE__)),
     $asset_file_front['dependencies'],
-    $asset_file_front['version']
+    $asset_file_front['version'],
+    true // Load in footer
   );
 
   wp_enqueue_style(

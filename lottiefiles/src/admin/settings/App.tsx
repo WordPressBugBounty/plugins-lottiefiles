@@ -106,7 +106,6 @@ export const App: React.FC<IAPIProps> = ({ deleteSettings, getSettings, updateSe
                       <Setup
                         settings={{
                           shareUserData: true,
-                          shareWithOthers: false,
                           copyLottieToMedia: false,
                           enableCdn: true,
                           switchAccount: false,

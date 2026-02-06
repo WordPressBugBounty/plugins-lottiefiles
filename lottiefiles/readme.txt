@@ -1,12 +1,12 @@
-=== LottieFiles - Lottie block for Gutenberg ===
+=== LottieFiles ===
 Author URI: https://lottiefiles.com
 Plugin URI: https:/lottiefiles.com/plugins/wordpress
 Contributors: lottiefile
 Tags: lottie, bodymovin, gutenberg, animation, animations
 Requires at least: 5.9
-Tested up to: 6.7.1
+Tested up to: 6.9
 Requires PHP: 5.6
-Stable Tag: 3.0.0
+Stable Tag: 3.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,7 +32,6 @@ LottieFiles for WordPress gives you access to over 50k free and ready to use Lot
   -  **Loop** the animation or play once
   - Play the animation in reverse
   - The **dimensions (width and max width) with responsive controls**
-- Share your LottieFiles account with other users
 
 == Installation ==
 
@@ -79,6 +78,14 @@ If you have spotted any bugs, or would like to request additional features from 
 
 == Changelog ==
 
+## 3.1.0
+
+### Security
+
+- Fixed unauthenticated REST API endpoint vulnerability (CVE-2026-0717)
+- Added proper permission callbacks and capability checks to REST API endpoints
+- Removed "Share LottieFiles account with other users" feature
+
 ## 3.0.0
 
 ### Minor Changes
@@ -123,7 +130,7 @@ If you have spotted any bugs, or would like to request additional features from 
 
 - New feature to give an option for the user to use the CDN or use local player
 - Fix for animation play on hover, click and scroll
-- Search feature gate removed on workspaces 
+- Search feature gate removed on workspaces
 
 ## 2.3.0
 

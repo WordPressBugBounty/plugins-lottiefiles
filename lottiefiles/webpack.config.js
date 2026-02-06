@@ -8,13 +8,14 @@ const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 const Dotenv = require('dotenv-webpack');
 
 const isProduction = process.env.NODE_ENV === 'production';
+const envPath = isProduction ? '.env.production' : '.env';
 
 module.exports = {
   mode: isProduction ? 'production' : 'development',
   ...defaultConfig,
   plugins: [
     ...defaultConfig.plugins,
-    new Dotenv(),
+    new Dotenv({ path: envPath }),
   ],
   resolve: {
     ...defaultConfig.resolve,

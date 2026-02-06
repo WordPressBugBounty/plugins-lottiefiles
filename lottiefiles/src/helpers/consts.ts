@@ -16,7 +16,7 @@ export const appDetails = {
 };
 
 export const api = {
-  graphql: process.env.NODE_ENV === 'development' ? process.env.GRAPHQL_URL_DEV : process.env.GRAPHQL_URL,
+  graphql: process.env.GRAPHQL_URL,
   domain: 'https://lottiefiles.com',
 };
 

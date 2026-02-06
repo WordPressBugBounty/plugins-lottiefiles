@@ -1,6 +1,6 @@
 {
   "name": "@lottiefiles/plugin-wordpress",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "author": "Liaqat Saeed",
   "license": "UNLICENSED",
   "main": "build/index.js",
@@ -8,6 +8,8 @@
   "scripts": {
     "build": "wp-scripts build ./src/gutenberg-block/index ./src/gutenberg-block/frontend/frontend-helper ./src/gutenberg-block/frontend/lottiefiles-frontend.css",
     "build:babel": "babel src -d dist --extensions \".ts,.tsx,.js,.jsx\"",
+    "build:dev": "NODE_ENV=development pnpm run build && pnpm run build:babel",
+    "build:prod": "NODE_ENV=production pnpm run build && pnpm run build:babel",
     "watch:babel": "babel src -d dist --extensions \".ts,.tsx,.js,.jsx\" --watch",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint:css": "wp-scripts lint-style",
@@ -19,7 +21,7 @@
     "stop:wordpress": "wp-env stop",
     "commit": "cz",
     "dev": "concurrently \"pnpm run start\" \"pnpm run watch:babel\"",
-    "build:all": "pnpm run build && pnpm run build:babel"
+    "build:all": "pnpm run build:prod"
   },
   "dependencies": {
     "@bugsnag/js": "8.0.0",
@@ -65,6 +67,7 @@
     "vanilla-picker": "2.12.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.28.6",
     "@babel/core": "^7.26.0",
     "@babel/plugin-syntax-top-level-await": "^7.14.5",
     "@babel/plugin-transform-async-to-generator": "^7.25.9",

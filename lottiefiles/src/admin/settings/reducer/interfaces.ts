@@ -23,7 +23,6 @@ export interface IHNResponseProps {
   copyLottieToMedia?: boolean;
   isAdmin?: boolean;
   shareUserData?: boolean;
-  shareWithOthers?: boolean;
   switchAccount: boolean;
   enableCdn?: boolean;
   userData?: IUserDataProps;

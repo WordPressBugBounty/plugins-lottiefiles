@@ -1,6 +1,8 @@
 <?php
-
-
+// Exit if accessed directly.
+if (!defined('ABSPATH')) {
+  exit;
+}
 
 //Register assets for Settings
 add_action('init', function () {
@@ -13,9 +15,11 @@ add_action('init', function () {
       $handle,
       plugins_url("/build/$handle-page.js", dirname(__FILE__, 3)),
       $dependencies,
-      $assets['version']
+      $assets['version'],
+      true // Load in footer
     );
-    if (strstr($_SERVER['REQUEST_URI'], 'lottiefiles-admin-settings')) {
+    $request_uri = isset($_SERVER['REQUEST_URI']) ? sanitize_text_field(wp_unslash($_SERVER['REQUEST_URI'])) : '';
+    if (strstr($request_uri, 'lottiefiles-admin-settings')) {
       wp_enqueue_style(
         $handle,
         plugins_url("/build/$handle-page-style.css", dirname(__FILE__, 3)),

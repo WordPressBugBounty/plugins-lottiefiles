@@ -1,5 +1,18 @@
 # @lottiefiles/plugin-wordpress
 
+## 3.1.0
+
+### Minor Changes
+
+- 02929d6: Fix for LottieFiles WP plugin's CSS affects other input elements in the WP Block Editor
+- 69d020b: Fix Gutenberg block Lottie broken
+- 348995d: Fix for LottieFiles plugin affecting UI of other wordpress pages
+- f45a392: Fix for Lottie block throwing block validation error
+- 71a3a2e: Dependencies update and BugSnag implementation.
+- Fixed unauthenticated REST API endpoint vulnerability (CVE-2026-0717)
+- Added proper permission callbacks and capability checks to REST API endpoints
+- Removed "Share LottieFiles account with other users" feature
+
 ## 2.5.0
 
 ### Minor Changes
